@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.PlfFuwulbMapper">
+    
+    <resultMap type="PlfFuwulb" id="PlfFuwulbResult">
+        <result property="yingyongid"    column="yingyongid"    />
+        <result property="fuwuid"    column="fuwuid"    />
+        <result property="fuwumc"    column="fuwumc"    />
+        <result property="jiekoulx"    column="jiekoulx"    />
+        <result property="qingqiudz"    column="qingqiudz"    />
+        <result property="qingqiudk"    column="qingqiudk"    />
+        <result property="qingqiujl"    column="qingqiujl"    />
+        <result property="qinqiuff"    column="qinqiuff"    />
+        <result property="qinqiucs"    column="qinqiucs"    />
+        <result property="qingqiucssm"    column="qingqiucssm"    />
+        <result property="fanhuizhi"    column="fanhuizhi"    />
+        <result property="fanhuizhism"    column="fanhuizhism"    />
+        <result property="fuwuzt"    column="fuwuzt"    />
+        <result property="tingyongbz"    column="tingyongbz"    />
+        <result property="shangxiansj"    column="shangxiansj"    />
+        <result property="beizhu"    column="beizhu"    />
+    </resultMap>
+
+    <sql id="selectPlfFuwulbVo">
+        select yingyongid, fuwuid, fuwumc, jiekoulx, qingqiudz, qingqiudk, qingqiujl, qinqiuff, qinqiucs, qingqiucssm, fanhuizhi, fanhuizhism, fuwuzt, tingyongbz, shangxiansj, beizhu from plf_fuwulb
+    </sql>
+
+    <select id="selectPlfFuwulbList" parameterType="PlfFuwulb" resultMap="PlfFuwulbResult">
+        <include refid="selectPlfFuwulbVo"/>
+        <where>  
+            <if test="yingyongid != null  and yingyongid != ''"> and yingyongid = #{yingyongid}</if>
+            <if test="fuwumc != null  and fuwumc != ''"> and fuwumc = #{fuwumc}</if>
+            <if test="jiekoulx != null  and jiekoulx != ''"> and jiekoulx = #{jiekoulx}</if>
+            <if test="qingqiudz != null  and qingqiudz != ''"> and qingqiudz = #{qingqiudz}</if>
+            <if test="qingqiudk != null "> and qingqiudk = #{qingqiudk}</if>
+            <if test="qingqiujl != null  and qingqiujl != ''"> and qingqiujl = #{qingqiujl}</if>
+            <if test="qinqiuff != null  and qinqiuff != ''"> and qinqiuff = #{qinqiuff}</if>
+            <if test="qinqiucs != null  and qinqiucs != ''"> and qinqiucs = #{qinqiucs}</if>
+            <if test="qingqiucssm != null  and qingqiucssm != ''"> and qingqiucssm = #{qingqiucssm}</if>
+            <if test="fanhuizhi != null  and fanhuizhi != ''"> and fanhuizhi = #{fanhuizhi}</if>
+            <if test="fanhuizhism != null  and fanhuizhism != ''"> and fanhuizhism = #{fanhuizhism}</if>
+            <if test="fuwuzt != null "> and fuwuzt = #{fuwuzt}</if>
+            <if test="tingyongbz != null "> and tingyongbz = #{tingyongbz}</if>
+            <if test="shangxiansj != null "> and shangxiansj = #{shangxiansj}</if>
+            <if test="beizhu != null  and beizhu != ''"> and beizhu = #{beizhu}</if>
+        </where>
+    </select>
+    
+    <select id="selectPlfFuwulbById" parameterType="String" resultMap="PlfFuwulbResult">
+        <include refid="selectPlfFuwulbVo"/>
+        where fuwuid = #{fuwuid}
+    </select>
+        
+    <insert id="insertPlfFuwulb" parameterType="PlfFuwulb">
+        <selectKey keyProperty="fuwuid" resultType="long" order="BEFORE">
+            SELECT seq_plf_fuwulb.NEXTVAL as fuwuid FROM DUAL
+        </selectKey>
+        insert into plf_fuwulb
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="yingyongid != null  and yingyongid != ''">yingyongid,</if>
+            <if test="fuwuid != null  and fuwuid != ''">fuwuid,</if>
+            <if test="fuwumc != null  and fuwumc != ''">fuwumc,</if>
+            <if test="jiekoulx != null  and jiekoulx != ''">jiekoulx,</if>
+            <if test="qingqiudz != null  and qingqiudz != ''">qingqiudz,</if>
+            <if test="qingqiudk != null ">qingqiudk,</if>
+            <if test="qingqiujl != null  and qingqiujl != ''">qingqiujl,</if>
+            <if test="qinqiuff != null  and qinqiuff != ''">qinqiuff,</if>
+            <if test="qinqiucs != null  and qinqiucs != ''">qinqiucs,</if>
+            <if test="qingqiucssm != null  and qingqiucssm != ''">qingqiucssm,</if>
+            <if test="fanhuizhi != null  and fanhuizhi != ''">fanhuizhi,</if>
+            <if test="fanhuizhism != null  and fanhuizhism != ''">fanhuizhism,</if>
+            <if test="fuwuzt != null ">fuwuzt,</if>
+            <if test="tingyongbz != null ">tingyongbz,</if>
+            <if test="shangxiansj != null ">shangxiansj,</if>
+            <if test="beizhu != null  and beizhu != ''">beizhu,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="yingyongid != null  and yingyongid != ''">#{yingyongid},</if>
+            <if test="fuwuid != null  and fuwuid != ''">#{fuwuid},</if>
+            <if test="fuwumc != null  and fuwumc != ''">#{fuwumc},</if>
+            <if test="jiekoulx != null  and jiekoulx != ''">#{jiekoulx},</if>
+            <if test="qingqiudz != null  and qingqiudz != ''">#{qingqiudz},</if>
+            <if test="qingqiudk != null ">#{qingqiudk},</if>
+            <if test="qingqiujl != null  and qingqiujl != ''">#{qingqiujl},</if>
+            <if test="qinqiuff != null  and qinqiuff != ''">#{qinqiuff},</if>
+            <if test="qinqiucs != null  and qinqiucs != ''">#{qinqiucs},</if>
+            <if test="qingqiucssm != null  and qingqiucssm != ''">#{qingqiucssm},</if>
+            <if test="fanhuizhi != null  and fanhuizhi != ''">#{fanhuizhi},</if>
+            <if test="fanhuizhism != null  and fanhuizhism != ''">#{fanhuizhism},</if>
+            <if test="fuwuzt != null ">#{fuwuzt},</if>
+            <if test="tingyongbz != null ">#{tingyongbz},</if>
+            <if test="shangxiansj != null ">#{shangxiansj},</if>
+            <if test="beizhu != null  and beizhu != ''">#{beizhu},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePlfFuwulb" parameterType="PlfFuwulb">
+        update plf_fuwulb
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="yingyongid != null  and yingyongid != ''">yingyongid = #{yingyongid},</if>
+            <if test="fuwumc != null  and fuwumc != ''">fuwumc = #{fuwumc},</if>
+            <if test="jiekoulx != null  and jiekoulx != ''">jiekoulx = #{jiekoulx},</if>
+            <if test="qingqiudz != null  and qingqiudz != ''">qingqiudz = #{qingqiudz},</if>
+            <if test="qingqiudk != null ">qingqiudk = #{qingqiudk},</if>
+            <if test="qingqiujl != null  and qingqiujl != ''">qingqiujl = #{qingqiujl},</if>
+            <if test="qinqiuff != null  and qinqiuff != ''">qinqiuff = #{qinqiuff},</if>
+            <if test="qinqiucs != null  and qinqiucs != ''">qinqiucs = #{qinqiucs},</if>
+            <if test="qingqiucssm != null  and qingqiucssm != ''">qingqiucssm = #{qingqiucssm},</if>
+            <if test="fanhuizhi != null  and fanhuizhi != ''">fanhuizhi = #{fanhuizhi},</if>
+            <if test="fanhuizhism != null  and fanhuizhism != ''">fanhuizhism = #{fanhuizhism},</if>
+            <if test="fuwuzt != null ">fuwuzt = #{fuwuzt},</if>
+            <if test="tingyongbz != null ">tingyongbz = #{tingyongbz},</if>
+            <if test="shangxiansj != null ">shangxiansj = #{shangxiansj},</if>
+            <if test="beizhu != null  and beizhu != ''">beizhu = #{beizhu},</if>
+        </trim>
+        where fuwuid = #{fuwuid}
+    </update>
+
+    <delete id="deletePlfFuwulbById" parameterType="String">
+        delete from plf_fuwulb where fuwuid = #{fuwuid}
+    </delete>
+
+    <delete id="deletePlfFuwulbByIds" parameterType="String">
+        delete from plf_fuwulb where fuwuid in 
+        <foreach item="fuwuid" collection="array" open="(" separator="," close=")">
+            #{fuwuid}
+        </foreach>
+    </delete>
+    
+</mapper>

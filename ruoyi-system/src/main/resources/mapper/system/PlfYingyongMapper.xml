@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.PlfYingyongMapper">
+    
+    <resultMap type="PlfYingyong" id="PlfYingyongResult">
+        <result property="yingyongid"    column="yingyongid"    />
+        <result property="mingcheng"    column="mingcheng"    />
+        <result property="neirong"    column="neirong"    />
+        <result property="changjia"    column="changjia"    />
+        <result property="zhuangtai"    column="zhuangtai"    />
+        <result property="shangxiansj"    column="shangxiansj"    />
+        <result property="shangxianfw"    column="shangxianfw"    />
+        <result property="tingyongbz"    column="tingyongbz"    />
+        <result property="beizhusm"    column="beizhusm"    />
+    </resultMap>
+
+    <sql id="selectPlfYingyongVo">
+        select yingyongid, mingcheng, neirong, changjia, zhuangtai, shangxiansj, shangxianfw, tingyongbz, beizhusm from plf_yingyong
+    </sql>
+
+    <select id="selectPlfYingyongList" parameterType="PlfYingyong" resultMap="PlfYingyongResult">
+        <include refid="selectPlfYingyongVo"/>
+        <where>  
+            <if test="mingcheng != null  and mingcheng != ''"> and mingcheng = #{mingcheng}</if>
+            <if test="neirong != null  and neirong != ''"> and neirong = #{neirong}</if>
+            <if test="changjia != null  and changjia != ''"> and changjia = #{changjia}</if>
+            <if test="zhuangtai != null "> and zhuangtai = #{zhuangtai}</if>
+            <if test="shangxiansj != null "> and shangxiansj = #{shangxiansj}</if>
+            <if test="shangxianfw != null "> and shangxianfw = #{shangxianfw}</if>
+            <if test="tingyongbz != null "> and tingyongbz = #{tingyongbz}</if>
+            <if test="beizhusm != null  and beizhusm != ''"> and beizhusm = #{beizhusm}</if>
+        </where>
+    </select>
+    
+    <select id="selectPlfYingyongById" parameterType="String" resultMap="PlfYingyongResult">
+        <include refid="selectPlfYingyongVo"/>
+        where yingyongid = #{yingyongid}
+    </select>
+        
+    <insert id="insertPlfYingyong" parameterType="PlfYingyong">
+        <selectKey keyProperty="yingyongid" resultType="long" order="BEFORE">
+            SELECT seq_plf_yingyong.NEXTVAL as yingyongid FROM DUAL
+        </selectKey>
+        insert into plf_yingyong
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="yingyongid != null  and yingyongid != ''">yingyongid,</if>
+            <if test="mingcheng != null  and mingcheng != ''">mingcheng,</if>
+            <if test="neirong != null  and neirong != ''">neirong,</if>
+            <if test="changjia != null  and changjia != ''">changjia,</if>
+            <if test="zhuangtai != null ">zhuangtai,</if>
+            <if test="shangxiansj != null ">shangxiansj,</if>
+            <if test="shangxianfw != null ">shangxianfw,</if>
+            <if test="tingyongbz != null ">tingyongbz,</if>
+            <if test="beizhusm != null  and beizhusm != ''">beizhusm,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="yingyongid != null  and yingyongid != ''">#{yingyongid},</if>
+            <if test="mingcheng != null  and mingcheng != ''">#{mingcheng},</if>
+            <if test="neirong != null  and neirong != ''">#{neirong},</if>
+            <if test="changjia != null  and changjia != ''">#{changjia},</if>
+            <if test="zhuangtai != null ">#{zhuangtai},</if>
+            <if test="shangxiansj != null ">#{shangxiansj},</if>
+            <if test="shangxianfw != null ">#{shangxianfw},</if>
+            <if test="tingyongbz != null ">#{tingyongbz},</if>
+            <if test="beizhusm != null  and beizhusm != ''">#{beizhusm},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePlfYingyong" parameterType="PlfYingyong">
+        update plf_yingyong
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="mingcheng != null  and mingcheng != ''">mingcheng = #{mingcheng},</if>
+            <if test="neirong != null  and neirong != ''">neirong = #{neirong},</if>
+            <if test="changjia != null  and changjia != ''">changjia = #{changjia},</if>
+            <if test="zhuangtai != null ">zhuangtai = #{zhuangtai},</if>
+            <if test="shangxiansj != null ">shangxiansj = #{shangxiansj},</if>
+            <if test="shangxianfw != null ">shangxianfw = #{shangxianfw},</if>
+            <if test="tingyongbz != null ">tingyongbz = #{tingyongbz},</if>
+            <if test="beizhusm != null  and beizhusm != ''">beizhusm = #{beizhusm},</if>
+        </trim>
+        where yingyongid = #{yingyongid}
+    </update>
+
+    <delete id="deletePlfYingyongById" parameterType="String">
+        delete from plf_yingyong where yingyongid = #{yingyongid}
+    </delete>
+
+    <delete id="deletePlfYingyongByIds" parameterType="String">
+        delete from plf_yingyong where yingyongid in 
+        <foreach item="yingyongid" collection="array" open="(" separator="," close=")">
+            #{yingyongid}
+        </foreach>
+    </delete>
+    
+</mapper>

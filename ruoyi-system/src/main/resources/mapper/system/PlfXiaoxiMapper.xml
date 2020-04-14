@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.PlfXiaoxiMapper">
+    
+    <resultMap type="PlfXiaoxi" id="PlfXiaoxiResult">
+        <result property="xiaoxiid"    column="xiaoxiid"    />
+        <result property="fasongfw"    column="fasongfw"    />
+        <result property="fasongsj"    column="fasongsj"    />
+        <result property="xiaoxinr"    column="xiaoxinr"    />
+        <result property="jieshoufw"    column="jieshoufw"    />
+        <result property="jieshousj"    column="jieshousj"    />
+        <result property="jilusj"    column="jilusj"    />
+        <result property="jiluly"    column="jiluly"    />
+    </resultMap>
+
+    <sql id="selectPlfXiaoxiVo">
+        select xiaoxiid, fasongfw, fasongsj, xiaoxinr, jieshoufw, jieshousj, jilusj, jiluly from plf_xiaoxi
+    </sql>
+
+    <select id="selectPlfXiaoxiList" parameterType="PlfXiaoxi" resultMap="PlfXiaoxiResult">
+        <include refid="selectPlfXiaoxiVo"/>
+        <where>  
+            <if test="fasongfw != null  and fasongfw != ''"> and fasongfw = #{fasongfw}</if>
+            <if test="fasongsj != null "> and fasongsj = #{fasongsj}</if>
+            <if test="xiaoxinr != null  and xiaoxinr != ''"> and xiaoxinr = #{xiaoxinr}</if>
+            <if test="jieshoufw != null  and jieshoufw != ''"> and jieshoufw = #{jieshoufw}</if>
+            <if test="jieshousj != null "> and jieshousj = #{jieshousj}</if>
+            <if test="jilusj != null "> and jilusj = #{jilusj}</if>
+            <if test="jiluly != null  and jiluly != ''"> and jiluly = #{jiluly}</if>
+        </where>
+    </select>
+    
+    <select id="selectPlfXiaoxiById" parameterType="String" resultMap="PlfXiaoxiResult">
+        <include refid="selectPlfXiaoxiVo"/>
+        where xiaoxiid = #{xiaoxiid}
+    </select>
+        
+    <insert id="insertPlfXiaoxi" parameterType="PlfXiaoxi">
+        <selectKey keyProperty="xiaoxiid" resultType="long" order="BEFORE">
+            SELECT seq_plf_xiaoxi.NEXTVAL as xiaoxiid FROM DUAL
+        </selectKey>
+        insert into plf_xiaoxi
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="xiaoxiid != null  and xiaoxiid != ''">xiaoxiid,</if>
+            <if test="fasongfw != null  and fasongfw != ''">fasongfw,</if>
+            <if test="fasongsj != null ">fasongsj,</if>
+            <if test="xiaoxinr != null  and xiaoxinr != ''">xiaoxinr,</if>
+            <if test="jieshoufw != null  and jieshoufw != ''">jieshoufw,</if>
+            <if test="jieshousj != null ">jieshousj,</if>
+            <if test="jilusj != null ">jilusj,</if>
+            <if test="jiluly != null  and jiluly != ''">jiluly,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="xiaoxiid != null  and xiaoxiid != ''">#{xiaoxiid},</if>
+            <if test="fasongfw != null  and fasongfw != ''">#{fasongfw},</if>
+            <if test="fasongsj != null ">#{fasongsj},</if>
+            <if test="xiaoxinr != null  and xiaoxinr != ''">#{xiaoxinr},</if>
+            <if test="jieshoufw != null  and jieshoufw != ''">#{jieshoufw},</if>
+            <if test="jieshousj != null ">#{jieshousj},</if>
+            <if test="jilusj != null ">#{jilusj},</if>
+            <if test="jiluly != null  and jiluly != ''">#{jiluly},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePlfXiaoxi" parameterType="PlfXiaoxi">
+        update plf_xiaoxi
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="fasongfw != null  and fasongfw != ''">fasongfw = #{fasongfw},</if>
+            <if test="fasongsj != null ">fasongsj = #{fasongsj},</if>
+            <if test="xiaoxinr != null  and xiaoxinr != ''">xiaoxinr = #{xiaoxinr},</if>
+            <if test="jieshoufw != null  and jieshoufw != ''">jieshoufw = #{jieshoufw},</if>
+            <if test="jieshousj != null ">jieshousj = #{jieshousj},</if>
+            <if test="jilusj != null ">jilusj = #{jilusj},</if>
+            <if test="jiluly != null  and jiluly != ''">jiluly = #{jiluly},</if>
+        </trim>
+        where xiaoxiid = #{xiaoxiid}
+    </update>
+
+    <delete id="deletePlfXiaoxiById" parameterType="String">
+        delete from plf_xiaoxi where xiaoxiid = #{xiaoxiid}
+    </delete>
+
+    <delete id="deletePlfXiaoxiByIds" parameterType="String">
+        delete from plf_xiaoxi where xiaoxiid in 
+        <foreach item="xiaoxiid" collection="array" open="(" separator="," close=")">
+            #{xiaoxiid}
+        </foreach>
+    </delete>
+    
+</mapper>
