@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改应用列')" />
+    <th:block th:include="include :: datetimepicker-css" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-yingyong-edit" th:object="${plfYingyong}">
+            <input name="yingyongid" th:field="*{yingyongid}" type="hidden">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label is-required">名称：</label>
+                <div class="col-sm-8">
+                    <input name="mingcheng" th:field="*{mingcheng}" class="form-control" type="text" required>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">内容：</label>
+                <div class="col-sm-8">
+                    <input name="neirong" th:field="*{neirong}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">厂家：</label>
+                <div class="col-sm-8">
+                    <input name="changjia" th:field="*{changjia}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">服务状态 0 停止 1 启动：</label>
+                <div class="col-sm-8">
+                    <input name="zhuangtai" th:field="*{zhuangtai}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">上线时间：</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input name="shangxiansj" th:value="${#dates.format(plfYingyong.shangxiansj, 'yyyy-MM-dd')}" class="form-control" placeholder="yyyy-MM-dd" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">上线服务数：</label>
+                <div class="col-sm-8">
+                    <input name="shangxianfw" th:field="*{shangxianfw}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">停用标志：</label>
+                <div class="col-sm-8">
+                    <input name="tingyongbz" th:field="*{tingyongbz}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">备注说明：</label>
+                <div class="col-sm-8">
+                    <input name="beizhusm" th:field="*{beizhusm}" class="form-control" type="text">
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: datetimepicker-js" />
+    <script type="text/javascript">
+        var prefix = ctx + "system/yingyong";
+        $("#form-yingyong-edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/edit", $('#form-yingyong-edit').serialize());
+            }
+        }
+
+        $("input[name='shangxiansj']").datetimepicker({
+            format: "yyyy-mm-dd",
+            minView: "month",
+            autoclose: true
+        });
+    </script>
+</body>
+</html>
