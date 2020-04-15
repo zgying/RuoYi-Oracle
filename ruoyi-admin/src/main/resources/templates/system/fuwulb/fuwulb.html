@@ -17,51 +17,26 @@
                             <li>
                                 <label>服务名称：</label>
                                 <input type="text" name="fuwumc"/>
-                            </li>
+                            </li>                       
                             <li>
-                                <label>接口类型 SOAP Resuful：</label>
-                                <input type="text" name="jiekoulx"/>
-                            </li>
-                            <li>
-                                <label>请求地址　：</label>
+                                <label>请求地址:</label>
                                 <input type="text" name="qingqiudz"/>
                             </li>
+                         
                             <li>
-                                <label>请求端口：</label>
-                                <input type="text" name="qingqiudk"/>
-                            </li>
+                                服务状态                              
+                                <select name="fuwuzt" th:with="type=${@dict.getType('plt_yingyongzt')}">
+									<option value="">所有</option>
+									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+								</select>
+                            </li>             
                             <li>
-                                <label>请求路径：</label>
-                                <input type="text" name="qingqiujl"/>
-                            </li>
-                            <li>
-                                <label>请求方式 GET　：</label>
-                                <input type="text" name="qinqiuff"/>
-                            </li>
-                            <li>
-                                <label>请求参数：</label>
-                                <input type="text" name="qinqiucs"/>
-                            </li>
-                            <li>
-                                <label>请求参数说明：</label>
-                                <input type="text" name="qingqiucssm"/>
-                            </li>
-                            <li>
-                                <label>返回值：</label>
-                                <input type="text" name="fanhuizhi"/>
-                            </li>
-                            <li>
-                                <label>返回值说明：</label>
-                                <input type="text" name="fanhuizhism"/>
-                            </li>
-                            <li>
-                                <label>服务状态 0 正常：</label>
-                                <input type="text" name="fuwuzt"/>
-                            </li>
-                            <li>
-                                <label>统计标志：</label>
-                                <input type="text" name="tingyongbz"/>
-                            </li>
+                                停用                           
+                                <select name="tingyongbz" th:with="type=${@dict.getType('plt_tingyongbz')}">
+									<option value="">所有</option>
+									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+								</select>
+                            </li>              
                             <li class="select-time">
                                 <label>上线时间：</label>
                                 <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginShangxiansj]"/>
@@ -113,7 +88,7 @@
                 updateUrl: prefix + "/edit/{id}",
                 removeUrl: prefix + "/remove",
                 exportUrl: prefix + "/export",
-                modalName: "服务列",
+                modalName: "服务列表",
                 columns: [{
                     checkbox: true
                 },
@@ -132,11 +107,11 @@
                 },
                 {
                     field: 'jiekoulx', 
-                    title: '接口类型 SOAP Resuful'
+                    title: '接口类型'
                 },
                 {
                     field: 'qingqiudz', 
-                    title: '请求地址　'
+                    title: '请求地址'
                 },
                 {
                     field: 'qingqiudk', 
@@ -148,7 +123,7 @@
                 },
                 {
                     field: 'qinqiuff', 
-                    title: '请求方式 GET　'
+                    title: '请求方式'
                 },
                 {
                     field: 'qinqiucs', 
@@ -168,11 +143,11 @@
                 },
                 {
                     field: 'fuwuzt', 
-                    title: '服务状态 0 正常'
+                    title: '服务状态'
                 },
                 {
                     field: 'tingyongbz', 
-                    title: '统计标志'
+                    title: '停用标志'
                 },
                 {
                     field: 'shangxiansj', 

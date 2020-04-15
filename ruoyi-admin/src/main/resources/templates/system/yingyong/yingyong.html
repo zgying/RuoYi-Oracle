@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('应用列列表')" />
+    <th:block th:include="include :: header('应用列表')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
@@ -23,8 +23,12 @@
                                 <input type="text" name="changjia"/>
                             </li>
                             <li>
-                                <label>服务状态 0 停止 1 启动：</label>
-                                <input type="text" name="zhuangtai"/>
+                                服务状态
+                                <select name="zhuangtai" th:with="type=${@dict.getType('plt_yingyongzt')}">
+									<option value="">所有</option>
+									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+								</select>
+                               
                             </li>
                             <li class="select-time">
                                 <label>上线时间：</label>
@@ -32,13 +36,13 @@
                                 <span>-</span>
                                 <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endShangxiansj]"/>
                             </li>
+                          
                             <li>
-                                <label>上线服务数：</label>
-                                <input type="text" name="shangxianfw"/>
-                            </li>
-                            <li>
-                                <label>停用标志：</label>
-                                <input type="text" name="tingyongbz"/>
+                                停用标志：
+                                 <select name="tingyongbz" th:with="type=${@dict.getType('plt_tingyongbz')}">
+									<option value="">所有</option>
+									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+								</select>                               
                             </li>
                             <li>
                                 <label>备注说明：</label>
@@ -108,7 +112,7 @@
                 },
                 {
                     field: 'zhuangtai', 
-                    title: '服务状态 0 停止 1 启动'
+                    title: '服务状态'
                 },
                 {
                     field: 'shangxiansj', 

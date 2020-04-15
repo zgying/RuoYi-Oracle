@@ -12,6 +12,8 @@ import com.ruoyi.system.domain.SysMenu;
 import com.ruoyi.system.domain.SysUser;
 import com.ruoyi.system.service.ISysConfigService;
 import com.ruoyi.system.service.ISysMenuService;
+import com.ruoyi.system.service.IUtlSQLService;
+import com.ruoyi.framework.web.domain.Server;
 
 /**
  * 首页 业务处理
@@ -27,6 +29,9 @@ public class SysIndexController extends BaseController
     @Autowired
     private ISysConfigService configService;
 
+    @Autowired
+    private IUtlSQLService utlSQLService;
+    
     // 系统首页
     @GetMapping("/index")
     public String index(ModelMap mmap)
@@ -53,9 +58,16 @@ public class SysIndexController extends BaseController
 
     // 系统介绍
     @GetMapping("/system/main")
-    public String main(ModelMap mmap)
+    public String main(ModelMap mmap) throws Exception
     {
         mmap.put("version", Global.getVersion());
+        mmap.put("shouYeTJXX", utlSQLService.superSelect("select * from sta_shouYe").get(0));  
+        mmap.put("24HXIAOXI", utlSQLService.superSelect("select * from sta_24hxiaoxi").get(0));  
+        
+        Server server = new Server();
+        server.copyTo();
+        mmap.put("server", server);
+        
         return "main";
     }
 }
