@@ -9,10 +9,10 @@ import com.ruoyi.system.service.IPlfYingyongService;
 import com.ruoyi.common.core.text.Convert;
 
 /**
- * 应用列Service业务层处理
+ * 应用系统Service业务层处理
  * 
- * @author yingzhongguang
- * @date 2020-04-13
+ * @author open hit
+ * @date 2020-05-03
  */
 @Service
 public class PlfYingyongServiceImpl implements IPlfYingyongService 
@@ -21,10 +21,10 @@ public class PlfYingyongServiceImpl implements IPlfYingyongService
     private PlfYingyongMapper plfYingyongMapper;
 
     /**
-     * 查询应用列
+     * 查询应用系统
      * 
-     * @param yingyongid 应用列ID
-     * @return 应用列
+     * @param yingyongid 应用系统ID
+     * @return 应用系统
      */
     @Override
     public PlfYingyong selectPlfYingyongById(String yingyongid)
@@ -33,10 +33,10 @@ public class PlfYingyongServiceImpl implements IPlfYingyongService
     }
 
     /**
-     * 查询应用列列表
+     * 查询应用系统列表
      * 
-     * @param plfYingyong 应用列
-     * @return 应用列
+     * @param plfYingyong 应用系统
+     * @return 应用系统
      */
     @Override
     public List<PlfYingyong> selectPlfYingyongList(PlfYingyong plfYingyong)
@@ -45,9 +45,9 @@ public class PlfYingyongServiceImpl implements IPlfYingyongService
     }
 
     /**
-     * 新增应用列
+     * 新增应用系统
      * 
-     * @param plfYingyong 应用列
+     * @param plfYingyong 应用系统
      * @return 结果
      */
     @Override
@@ -57,9 +57,9 @@ public class PlfYingyongServiceImpl implements IPlfYingyongService
     }
 
     /**
-     * 修改应用列
+     * 修改应用系统
      * 
-     * @param plfYingyong 应用列
+     * @param plfYingyong 应用系统
      * @return 结果
      */
     @Override
@@ -69,7 +69,7 @@ public class PlfYingyongServiceImpl implements IPlfYingyongService
     }
 
     /**
-     * 删除应用列对象
+     * 删除应用系统对象
      * 
      * @param ids 需要删除的数据ID
      * @return 结果
@@ -81,9 +81,9 @@ public class PlfYingyongServiceImpl implements IPlfYingyongService
     }
 
     /**
-     * 删除应用列信息
+     * 删除应用系统信息
      * 
-     * @param yingyongid 应用列ID
+     * @param yingyongid 应用系统ID
      * @return 结果
      */
     @Override

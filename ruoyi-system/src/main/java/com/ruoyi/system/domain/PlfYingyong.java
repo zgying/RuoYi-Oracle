@@ -7,10 +7,10 @@ import com.ruoyi.common.core.domain.BaseEntity;
 import java.util.Date;
 
 /**
- * 应用列对象 plf_yingyong
+ * 应用系统对象 plf_yingyong
  * 
- * @author ruoyi
- * @date 2020-04-14
+ * @author open hit
+ * @date 2020-05-03
  */
 public class PlfYingyong extends BaseEntity
 {

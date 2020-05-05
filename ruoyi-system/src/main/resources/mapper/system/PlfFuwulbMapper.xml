@@ -31,20 +31,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectPlfFuwulbVo"/>
         <where>  
             <if test="yingyongid != null  and yingyongid != ''"> and yingyongid = #{yingyongid}</if>
-            <if test="fuwumc != null  and fuwumc != ''"> and fuwumc = #{fuwumc}</if>
-            <if test="jiekoulx != null  and jiekoulx != ''"> and jiekoulx = #{jiekoulx}</if>
-            <if test="qingqiudz != null  and qingqiudz != ''"> and qingqiudz = #{qingqiudz}</if>
+            <if test="fuwuid != null  and fuwuid != ''"> and fuwuid like concat(concat('%', #{fuwuid}), '%')</if>
+            <if test="fuwumc != null  and fuwumc != ''"> and fuwumc like concat(concat('%', #{fuwumc}), '%')</if>
+            <if test="qingqiudz != null  and qingqiudz != ''"> and qingqiudz like concat(concat('%', #{qingqiudz}), '%')</if>
             <if test="qingqiudk != null "> and qingqiudk = #{qingqiudk}</if>
             <if test="qingqiujl != null  and qingqiujl != ''"> and qingqiujl = #{qingqiujl}</if>
-            <if test="qinqiuff != null  and qinqiuff != ''"> and qinqiuff = #{qinqiuff}</if>
-            <if test="qinqiucs != null  and qinqiucs != ''"> and qinqiucs = #{qinqiucs}</if>
-            <if test="qingqiucssm != null  and qingqiucssm != ''"> and qingqiucssm = #{qingqiucssm}</if>
-            <if test="fanhuizhi != null  and fanhuizhi != ''"> and fanhuizhi = #{fanhuizhi}</if>
-            <if test="fanhuizhism != null  and fanhuizhism != ''"> and fanhuizhism = #{fanhuizhism}</if>
             <if test="fuwuzt != null "> and fuwuzt = #{fuwuzt}</if>
             <if test="tingyongbz != null "> and tingyongbz = #{tingyongbz}</if>
-            <if test="shangxiansj != null "> and shangxiansj = #{shangxiansj}</if>
-            <if test="beizhu != null  and beizhu != ''"> and beizhu = #{beizhu}</if>
         </where>
     </select>
     

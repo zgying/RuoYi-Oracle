@@ -20,10 +20,10 @@ import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.page.TableDataInfo;
 
 /**
- * 【请填写功能名称】Controller
+ * 服务消息Controller
  * 
- * @author ruoyi
- * @date 2020-04-14
+ * @author openhit
+ * @date 2020-05-03
  */
 @Controller
 @RequestMapping("/system/xiaoxi")
@@ -42,7 +42,7 @@ public class PlfXiaoxiController extends BaseController
     }
 
     /**
-     * 查询【请填写功能名称】列表
+     * 查询服务消息列表
      */
     @RequiresPermissions("system:xiaoxi:list")
     @PostMapping("/list")
@@ -55,10 +55,10 @@ public class PlfXiaoxiController extends BaseController
     }
 
     /**
-     * 导出【请填写功能名称】列表
+     * 导出服务消息列表
      */
     @RequiresPermissions("system:xiaoxi:export")
-    @Log(title = "【请填写功能名称】", businessType = BusinessType.EXPORT)
+    @Log(title = "服务消息", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(PlfXiaoxi plfXiaoxi)
@@ -69,7 +69,7 @@ public class PlfXiaoxiController extends BaseController
     }
 
     /**
-     * 新增【请填写功能名称】
+     * 新增服务消息
      */
     @GetMapping("/add")
     public String add()
@@ -78,10 +78,10 @@ public class PlfXiaoxiController extends BaseController
     }
 
     /**
-     * 新增保存【请填写功能名称】
+     * 新增保存服务消息
      */
     @RequiresPermissions("system:xiaoxi:add")
-    @Log(title = "【请填写功能名称】", businessType = BusinessType.INSERT)
+    @Log(title = "服务消息", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(PlfXiaoxi plfXiaoxi)
@@ -90,7 +90,7 @@ public class PlfXiaoxiController extends BaseController
     }
 
     /**
-     * 修改【请填写功能名称】
+     * 修改服务消息
      */
     @GetMapping("/edit/{xiaoxiid}")
     public String edit(@PathVariable("xiaoxiid") String xiaoxiid, ModelMap mmap)
@@ -101,10 +101,10 @@ public class PlfXiaoxiController extends BaseController
     }
 
     /**
-     * 修改保存【请填写功能名称】
+     * 修改保存服务消息
      */
     @RequiresPermissions("system:xiaoxi:edit")
-    @Log(title = "【请填写功能名称】", businessType = BusinessType.UPDATE)
+    @Log(title = "服务消息", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(PlfXiaoxi plfXiaoxi)
@@ -113,10 +113,10 @@ public class PlfXiaoxiController extends BaseController
     }
 
     /**
-     * 删除【请填写功能名称】
+     * 删除服务消息
      */
     @RequiresPermissions("system:xiaoxi:remove")
-    @Log(title = "【请填写功能名称】", businessType = BusinessType.DELETE)
+    @Log(title = "服务消息", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

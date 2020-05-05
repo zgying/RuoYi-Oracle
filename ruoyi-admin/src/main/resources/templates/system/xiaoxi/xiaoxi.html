@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('【请填写功能名称】列表')" />
+    <th:block th:include="include :: header('服务消息列表')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
         <div class="row">
             <div class="col-sm-12 search-collapse">
-                <form id="formId">
+                <form id="xiaoxilb">
                     <div class="select-list">
                         <ul>
                             <li>
-                                <label>发送服务：</label>
+                                <label>消息ID：</label>
+                                <input type="text" name="xiaoxiid"/>
+                            </li>
+                            <li>
+                                <label>发送应用：</label>
                                 <input type="text" name="fasongfw"/>
                             </li>
                             <li class="select-time">
@@ -21,28 +25,24 @@
                                 <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endFasongsj]"/>
                             </li>
                             <li>
+                                <label>接收应用：</label>
+                                <input type="text" name="jieshoufw"/>
+                            </li>                           
+                            <li>
+                                <label>触发事件：</label>
+                                <input type="text" name="chufasj"/>
+                            </li>
+                            <li>
+                                <label>节点：</label>
+                                <input type="text" name="jiedian"/>
+                            </li>
+                            <li>
                                 <label>消息内容：</label>
                                 <input type="text" name="xiaoxinr"/>
                             </li>
                             <li>
-                                <label>接收服务：</label>
-                                <input type="text" name="jieshoufw"/>
-                            </li>
-                            <li class="select-time">
-                                <label>接收时间：</label>
-                                <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginJieshousj]"/>
-                                <span>-</span>
-                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endJieshousj]"/>
-                            </li>
-                            <li class="select-time">
-                                <label>记录时间：</label>
-                                <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginJilusj]"/>
-                                <span>-</span>
-                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endJilusj]"/>
-                            </li>
-                            <li>
-                                <label>记录来源：</label>
-                                <input type="text" name="jiluly"/>
+                                <label>消息流ID：</label>
+                                <input type="text" name="xiaoxiliu"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
@@ -53,16 +53,7 @@
                 </form>
             </div>
 
-            <div class="btn-group-sm" id="toolbar" role="group">
-                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:xiaoxi:add">
-                    <i class="fa fa-plus"></i> 添加
-                </a>
-                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:xiaoxi:edit">
-                    <i class="fa fa-edit"></i> 修改
-                </a>
-                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:xiaoxi:remove">
-                    <i class="fa fa-remove"></i> 删除
-                </a>
+            <div class="btn-group-sm" id="toolbar" role="group">            
                 <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:xiaoxi:export">
                     <i class="fa fa-download"></i> 导出
                 </a>
@@ -85,7 +76,7 @@
                 updateUrl: prefix + "/edit/{id}",
                 removeUrl: prefix + "/remove",
                 exportUrl: prefix + "/export",
-                modalName: "【请填写功能名称】",
+                modalName: "服务消息",
                 columns: [{
                     checkbox: true
                 },
@@ -96,7 +87,7 @@
                 },
                 {
                     field: 'fasongfw', 
-                    title: '发送服务'
+                    title: '发送应用'
                 },
                 {
                     field: 'fasongsj', 
@@ -108,27 +99,35 @@
                 },
                 {
                     field: 'jieshoufw', 
-                    title: '接收服务'
+                    title: '接收应用'
                 },
                 {
                     field: 'jieshousj', 
                     title: '接收时间'
                 },
                 {
-                    field: 'jilusj', 
-                    title: '记录时间'
+                    field: 'chufasj', 
+                    title: '触发事件'
                 },
                 {
-                    field: 'jiluly', 
-                    title: '记录来源'
+                    field: 'jiedian', 
+                    title: '节点',
+                    visible: false
+                },
+                {
+                    field: 'jieguo', 
+                    title: '消息结果'
+                },
+                {
+                    field: 'xiaoxiliu', 
+                    title: '消息流ID'
                 },
                 {
                     title: '操作',
                     align: 'center',
                     formatter: function(value, row, index) {
                         var actions = [];
-                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.xiaoxiid + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.xiaoxiid + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.xiaoxiid + '\')"><i class="fa fa-edit"></i>查看</a> ');
                         return actions.join('');
                     }
                 }]

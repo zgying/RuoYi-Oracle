@@ -13,23 +13,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="jieshousj"    column="jieshousj"    />
         <result property="jilusj"    column="jilusj"    />
         <result property="jiluly"    column="jiluly"    />
+        <result property="chufasj"    column="chufasj"    />
+        <result property="jiedian"    column="jiedian"    />
+        <result property="jieguo"    column="jieguo"    />
+        <result property="xiaoxiliu"    column="xiaoxiliu"    />
     </resultMap>
 
     <sql id="selectPlfXiaoxiVo">
-        select xiaoxiid, fasongfw, fasongsj, xiaoxinr, jieshoufw, jieshousj, jilusj, jiluly from plf_xiaoxi
+        select xiaoxiid, fasongfw, fasongsj, xiaoxinr, jieshoufw, jieshousj, jilusj, jiluly, chufasj, jiedian, jieguo, xiaoxiliu from plf_xiaoxi
     </sql>
 
     <select id="selectPlfXiaoxiList" parameterType="PlfXiaoxi" resultMap="PlfXiaoxiResult">
         <include refid="selectPlfXiaoxiVo"/>
         <where>  
-            <if test="fasongfw != null  and fasongfw != ''"> and fasongfw = #{fasongfw}</if>
-            <if test="fasongsj != null "> and fasongsj = #{fasongsj}</if>
-            <if test="xiaoxinr != null  and xiaoxinr != ''"> and xiaoxinr = #{xiaoxinr}</if>
-            <if test="jieshoufw != null  and jieshoufw != ''"> and jieshoufw = #{jieshoufw}</if>
+            <if test="xiaoxiid != null  and xiaoxiid != ''"> and xiaoxiid = #{xiaoxiid}</if>
+            <if test="fasongfw != null  and fasongfw != ''"> and fasongfw like concat(concat('%', #{fasongfw}), '%')</if>
+            <if test="params.beginFasongsj != null and params.beginFasongsj != '' and params.endFasongsj != null and params.endFasongsj != ''"> and fasongsj between to_date(#{params.beginFasongsj} || ' 00:00:00','yyyy-mm-dd hh24:mi:ss')   and to_date(#{params.endFasongsj} || ' 23:59:59','yyyy-mm-dd hh24:mi:ss')</if>
+            <if test="xiaoxinr != null  and xiaoxinr != ''"> and xiaoxinr like concat(concat('%', #{xiaoxinr}), '%')</if>
+            <if test="jieshoufw != null  and jieshoufw != ''"> and jieshoufw like concat(concat('%', #{jieshoufw}), '%')</if>
             <if test="jieshousj != null "> and jieshousj = #{jieshousj}</if>
-            <if test="jilusj != null "> and jilusj = #{jilusj}</if>
-            <if test="jiluly != null  and jiluly != ''"> and jiluly = #{jiluly}</if>
+            <if test="chufasj != null  and chufasj != ''"> and chufasj = #{chufasj}</if>
+            <if test="jiedian != null  and jiedian != ''"> and jiedian = #{jiedian}</if>
+            <if test="jieguo != null  and jieguo != ''"> and jieguo = #{jieguo}</if>
+            <if test="xiaoxiliu != null  and xiaoxiliu != ''"> and xiaoxiliu = #{xiaoxiliu}</if>
         </where>
+        
+        	order by fasongsj desc
+        
     </select>
     
     <select id="selectPlfXiaoxiById" parameterType="String" resultMap="PlfXiaoxiResult">
@@ -51,6 +61,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="jieshousj != null ">jieshousj,</if>
             <if test="jilusj != null ">jilusj,</if>
             <if test="jiluly != null  and jiluly != ''">jiluly,</if>
+            <if test="chufasj != null  and chufasj != ''">chufasj,</if>
+            <if test="jiedian != null  and jiedian != ''">jiedian,</if>
+            <if test="jieguo != null  and jieguo != ''">jieguo,</if>
+            <if test="xiaoxiliu != null  and xiaoxiliu != ''">xiaoxiliu,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="xiaoxiid != null  and xiaoxiid != ''">#{xiaoxiid},</if>
@@ -61,6 +75,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="jieshousj != null ">#{jieshousj},</if>
             <if test="jilusj != null ">#{jilusj},</if>
             <if test="jiluly != null  and jiluly != ''">#{jiluly},</if>
+            <if test="chufasj != null  and chufasj != ''">#{chufasj},</if>
+            <if test="jiedian != null  and jiedian != ''">#{jiedian},</if>
+            <if test="jieguo != null  and jieguo != ''">#{jieguo},</if>
+            <if test="xiaoxiliu != null  and xiaoxiliu != ''">#{xiaoxiliu},</if>
          </trim>
     </insert>
 
@@ -74,6 +92,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="jieshousj != null ">jieshousj = #{jieshousj},</if>
             <if test="jilusj != null ">jilusj = #{jilusj},</if>
             <if test="jiluly != null  and jiluly != ''">jiluly = #{jiluly},</if>
+            <if test="chufasj != null  and chufasj != ''">chufasj = #{chufasj},</if>
+            <if test="jiedian != null  and jiedian != ''">jiedian = #{jiedian},</if>
+            <if test="jieguo != null  and jieguo != ''">jieguo = #{jieguo},</if>
+            <if test="xiaoxiliu != null  and xiaoxiliu != ''">xiaoxiliu = #{xiaoxiliu},</if>
         </trim>
         where xiaoxiid = #{xiaoxiid}
     </update>

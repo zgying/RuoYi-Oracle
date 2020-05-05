@@ -23,12 +23,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectPlfYingyongList" parameterType="PlfYingyong" resultMap="PlfYingyongResult">
         <include refid="selectPlfYingyongVo"/>
         <where>  
-            <if test="mingcheng != null  and mingcheng != ''"> and mingcheng = #{mingcheng}</if>
-            <if test="neirong != null  and neirong != ''"> and neirong = #{neirong}</if>
-            <if test="changjia != null  and changjia != ''"> and changjia = #{changjia}</if>
+            <if test="yingyongid != null  and yingyongid != ''"> and yingyongid like concat(concat('%', #{yingyongid}), '%')</if>
+            <if test="mingcheng != null  and mingcheng != ''"> and mingcheng like concat(concat('%', #{mingcheng}), '%')</if>
+            <if test="neirong != null  and neirong != ''"> and neirong like concat(concat('%', #{neirong}), '%')</if>
+            <if test="changjia != null  and changjia != ''"> and changjia like concat(concat('%', #{changjia}), '%')</if>
             <if test="zhuangtai != null "> and zhuangtai = #{zhuangtai}</if>
-            <if test="shangxiansj != null "> and shangxiansj = #{shangxiansj}</if>
-            <if test="shangxianfw != null "> and shangxianfw = #{shangxianfw}</if>
+            <if test="params.beginShangxiansj != null and params.beginShangxiansj != '' and params.endShangxiansj != null and params.endShangxiansj != ''"> and shangxiansj between #{params.beginShangxiansj} and #{params.endShangxiansj}</if>
             <if test="tingyongbz != null "> and tingyongbz = #{tingyongbz}</if>
             <if test="beizhusm != null  and beizhusm != ''"> and beizhusm = #{beizhusm}</if>
         </where>

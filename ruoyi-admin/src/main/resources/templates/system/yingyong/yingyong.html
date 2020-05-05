@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('应用列表')" />
+    <th:block th:include="include :: header('应用系统列表')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
@@ -10,6 +10,10 @@
                 <form id="formId">
                     <div class="select-list">
                         <ul>
+                            <li>
+                                <label>应用ID：</label>
+                                <input type="text" name="yingyongid"/>
+                            </li>
                             <li>
                                 <label>名称：</label>
                                 <input type="text" name="mingcheng"/>
@@ -23,12 +27,8 @@
                                 <input type="text" name="changjia"/>
                             </li>
                             <li>
-                                服务状态
-                                <select name="zhuangtai" th:with="type=${@dict.getType('plt_yingyongzt')}">
-									<option value="">所有</option>
-									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
-								</select>
-                               
+                                <label>服务状态</label>
+                                <input type="text" name="zhuangtai"/>
                             </li>
                             <li class="select-time">
                                 <label>上线时间：</label>
@@ -36,17 +36,9 @@
                                 <span>-</span>
                                 <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endShangxiansj]"/>
                             </li>
-                          
                             <li>
-                                停用标志：
-                                 <select name="tingyongbz" th:with="type=${@dict.getType('plt_tingyongbz')}">
-									<option value="">所有</option>
-									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
-								</select>                               
-                            </li>
-                            <li>
-                                <label>备注说明：</label>
-                                <input type="text" name="beizhusm"/>
+                                <label>停用标志：</label>
+                                <input type="text" name="tingyongbz"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
@@ -80,6 +72,8 @@
     <script th:inline="javascript">
         var editFlag = [[${@permission.hasPermi('system:yingyong:edit')}]];
         var removeFlag = [[${@permission.hasPermi('system:yingyong:remove')}]];
+        var zhuangtaiDatas = [[${@dict.getType('plt_yingyongzt')}]];
+        var tingyongbzDatas = [[${@dict.getType('plt_tingyongbz')}]];
         var prefix = ctx + "system/yingyong";
 
         $(function() {
@@ -89,7 +83,7 @@
                 updateUrl: prefix + "/edit/{id}",
                 removeUrl: prefix + "/remove",
                 exportUrl: prefix + "/export",
-                modalName: "应用列",
+                modalName: "应用系统",
                 columns: [{
                     checkbox: true
                 },
@@ -112,7 +106,10 @@
                 },
                 {
                     field: 'zhuangtai', 
-                    title: '服务状态'
+                    title: '服务状态',
+                    formatter: function(value, row, index) {
+                       return $.table.selectDictLabel(zhuangtaiDatas, value);
+                    }
                 },
                 {
                     field: 'shangxiansj', 
@@ -124,7 +121,10 @@
                 },
                 {
                     field: 'tingyongbz', 
-                    title: '停用标志'
+                    title: '停用标志',
+                    formatter: function(value, row, index) {
+                       return $.table.selectDictLabel(tingyongbzDatas, value);
+                    }
                 },
                 {
                     field: 'beizhusm', 

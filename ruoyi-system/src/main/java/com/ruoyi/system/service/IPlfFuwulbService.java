@@ -6,8 +6,8 @@ import com.ruoyi.system.domain.PlfFuwulb;
 /**
  * 服务列Service接口
  * 
- * @author ruoyi
- * @date 2020-04-14
+ * @author openhit
+ * @date 2020-05-03
  */
 public interface IPlfFuwulbService 
 {

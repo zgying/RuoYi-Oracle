@@ -9,8 +9,8 @@ import java.util.Date;
 /**
  * 服务列对象 plf_fuwulb
  * 
- * @author ruoyi
- * @date 2020-04-14
+ * @author openhit
+ * @date 2020-05-03
  */
 public class PlfFuwulb extends BaseEntity
 {
@@ -21,6 +21,7 @@ public class PlfFuwulb extends BaseEntity
     private String yingyongid;
 
     /** 服务ID */
+    @Excel(name = "服务ID")
     private String fuwuid;
 
     /** 服务名称 */
@@ -67,8 +68,8 @@ public class PlfFuwulb extends BaseEntity
     @Excel(name = "服务状态 0 正常")
     private Long fuwuzt;
 
-    /** 统计标志 */
-    @Excel(name = "统计标志")
+    /** 停用标志 */
+    @Excel(name = "停用标志")
     private Long tingyongbz;
 
     /** 上线时间 */

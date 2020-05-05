@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <th:block th:include="include :: header('修改【请填写功能名称】')" />
+    <th:block th:include="include :: header('服务消息查看')" />
     <th:block th:include="include :: datetimepicker-css" />
 </head>
 <body class="white-bg">
@@ -9,7 +9,7 @@
         <form class="form-horizontal m" id="form-xiaoxi-edit" th:object="${plfXiaoxi}">
             <input name="xiaoxiid" th:field="*{xiaoxiid}" type="hidden">
             <div class="form-group">    
-                <label class="col-sm-3 control-label">发送服务：</label>
+                <label class="col-sm-3 control-label">发送应用：</label>
                 <div class="col-sm-8">
                     <input name="fasongfw" th:field="*{fasongfw}" class="form-control" type="text">
                 </div>
@@ -23,14 +23,14 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">    
+            <div class="form-group">
                 <label class="col-sm-3 control-label">消息内容：</label>
                 <div class="col-sm-8">
-                    <input name="xiaoxinr" th:field="*{xiaoxinr}" class="form-control" type="text">
+                    <textarea rows=8 name="xiaoxinr" class="form-control">[[*{xiaoxinr}]]</textarea>
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">接收服务：</label>
+                <label class="col-sm-3 control-label">接收应用：</label>
                 <div class="col-sm-8">
                     <input name="jieshoufw" th:field="*{jieshoufw}" class="form-control" type="text">
                 </div>
@@ -45,18 +45,21 @@
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">记录时间：</label>
+                <label class="col-sm-3 control-label">触发事件：</label>
                 <div class="col-sm-8">
-                    <div class="input-group date">
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input name="jilusj" th:value="${#dates.format(plfXiaoxi.jilusj, 'yyyy-MM-dd')}" class="form-control" placeholder="yyyy-MM-dd" type="text">
-                    </div>
+                    <input name="chufasj" th:field="*{chufasj}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">记录来源：</label>
+                <label class="col-sm-3 control-label">消息结果：</label>
                 <div class="col-sm-8">
-                    <input name="jiluly" th:field="*{jiluly}" class="form-control" type="text">
+                    <input name="jieguo" th:field="*{jieguo}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">消息流ID：</label>
+                <div class="col-sm-8">
+                    <input name="xiaoxiliu" th:field="*{xiaoxiliu}" class="form-control" type="text">
                 </div>
             </div>
         </form>
@@ -82,12 +85,6 @@
         });
 
         $("input[name='jieshousj']").datetimepicker({
-            format: "yyyy-mm-dd",
-            minView: "month",
-            autoclose: true
-        });
-
-        $("input[name='jilusj']").datetimepicker({
             format: "yyyy-mm-dd",
             minView: "month",
             autoclose: true

@@ -7,20 +7,21 @@ import com.ruoyi.common.core.domain.BaseEntity;
 import java.util.Date;
 
 /**
- * 【请填写功能名称】对象 plf_xiaoxi
+ * 服务消息对象 plf_xiaoxi
  * 
- * @author ruoyi
- * @date 2020-04-14
+ * @author openhit
+ * @date 2020-05-05
  */
 public class PlfXiaoxi extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
     /** 消息ID */
+    @Excel(name = "消息ID")
     private String xiaoxiid;
 
-    /** 发送服务 */
-    @Excel(name = "发送服务")
+    /** 发送应用 */
+    @Excel(name = "发送应用")
     private String fasongfw;
 
     /** 发送时间 */
@@ -31,8 +32,8 @@ public class PlfXiaoxi extends BaseEntity
     @Excel(name = "消息内容")
     private String xiaoxinr;
 
-    /** 接收服务 */
-    @Excel(name = "接收服务")
+    /** 接收应用 */
+    @Excel(name = "接收应用")
     private String jieshoufw;
 
     /** 接收时间 */
@@ -40,12 +41,26 @@ public class PlfXiaoxi extends BaseEntity
     private Date jieshousj;
 
     /** 记录时间 */
-    @Excel(name = "记录时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date jilusj;
 
     /** 记录来源 */
-    @Excel(name = "记录来源")
     private String jiluly;
+
+    /** 触发事件 */
+    @Excel(name = "触发事件")
+    private String chufasj;
+
+    /** 节点new ack listen */
+    @Excel(name = "节点")
+    private String jiedian;
+
+    /** 消息结果 */
+    @Excel(name = "消息结果")
+    private String jieguo;
+
+    /** 消息流ID */
+    @Excel(name = "消息流ID")
+    private String xiaoxiliu;
 
     public void setXiaoxiid(String xiaoxiid) 
     {
@@ -119,6 +134,42 @@ public class PlfXiaoxi extends BaseEntity
     {
         return jiluly;
     }
+    public void setChufasj(String chufasj) 
+    {
+        this.chufasj = chufasj;
+    }
+
+    public String getChufasj() 
+    {
+        return chufasj;
+    }
+    public void setJiedian(String jiedian) 
+    {
+        this.jiedian = jiedian;
+    }
+
+    public String getJiedian() 
+    {
+        return jiedian;
+    }
+    public void setJieguo(String jieguo) 
+    {
+        this.jieguo = jieguo;
+    }
+
+    public String getJieguo() 
+    {
+        return jieguo;
+    }
+    public void setXiaoxiliu(String xiaoxiliu) 
+    {
+        this.xiaoxiliu = xiaoxiliu;
+    }
+
+    public String getXiaoxiliu() 
+    {
+        return xiaoxiliu;
+    }
 
     @Override
     public String toString() {
@@ -131,6 +182,10 @@ public class PlfXiaoxi extends BaseEntity
             .append("jieshousj", getJieshousj())
             .append("jilusj", getJilusj())
             .append("jiluly", getJiluly())
+            .append("chufasj", getChufasj())
+            .append("jiedian", getJiedian())
+            .append("jieguo", getJieguo())
+            .append("xiaoxiliu", getXiaoxiliu())
             .toString();
     }
 }

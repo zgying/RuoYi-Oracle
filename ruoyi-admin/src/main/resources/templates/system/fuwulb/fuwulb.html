@@ -15,37 +15,32 @@
                                 <input type="text" name="yingyongid"/>
                             </li>
                             <li>
+                                <label>服务ID：</label>
+                                <input type="text" name="fuwuid"/>
+                            </li>
+                            <li>
                                 <label>服务名称：</label>
                                 <input type="text" name="fuwumc"/>
-                            </li>                       
+                            </li>
                             <li>
-                                <label>请求地址:</label>
+                                <label>请求地址　：</label>
                                 <input type="text" name="qingqiudz"/>
                             </li>
-                         
                             <li>
-                                服务状态                              
-                                <select name="fuwuzt" th:with="type=${@dict.getType('plt_yingyongzt')}">
-									<option value="">所有</option>
-									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
-								</select>
-                            </li>             
-                            <li>
-                                停用                           
-                                <select name="tingyongbz" th:with="type=${@dict.getType('plt_tingyongbz')}">
-									<option value="">所有</option>
-									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
-								</select>
-                            </li>              
-                            <li class="select-time">
-                                <label>上线时间：</label>
-                                <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginShangxiansj]"/>
-                                <span>-</span>
-                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endShangxiansj]"/>
+                                <label>请求端口：</label>
+                                <input type="text" name="qingqiudk"/>
                             </li>
                             <li>
-                                <label>备注说明：</label>
-                                <input type="text" name="beizhu"/>
+                                <label>请求路径：</label>
+                                <input type="text" name="qingqiujl"/>
+                            </li>
+                            <li>
+                                <label>服务状态</label>
+                                <input type="text" name="fuwuzt"/>
+                            </li>
+                            <li>
+                                <label>停用标志：</label>
+                                <input type="text" name="tingyongbz"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
@@ -79,6 +74,7 @@
     <script th:inline="javascript">
         var editFlag = [[${@permission.hasPermi('system:fuwulb:edit')}]];
         var removeFlag = [[${@permission.hasPermi('system:fuwulb:remove')}]];
+        var yingyongidDatas = [[${@dict.getType('plf_yingyong')}]];
         var prefix = ctx + "system/fuwulb";
 
         $(function() {
@@ -88,13 +84,16 @@
                 updateUrl: prefix + "/edit/{id}",
                 removeUrl: prefix + "/remove",
                 exportUrl: prefix + "/export",
-                modalName: "服务列表",
+                modalName: "服务列",
                 columns: [{
                     checkbox: true
                 },
                 {
                     field: 'yingyongid', 
-                    title: '应用ID'
+                    title: '应用ID',
+                    formatter: function(value, row, index) {
+                       return $.table.selectDictLabel(yingyongidDatas, value);
+                    }
                 },
                 {
                     field: 'fuwuid', 
@@ -111,7 +110,7 @@
                 },
                 {
                     field: 'qingqiudz', 
-                    title: '请求地址'
+                    title: '请求地址　'
                 },
                 {
                     field: 'qingqiudk', 
@@ -123,7 +122,7 @@
                 },
                 {
                     field: 'qinqiuff', 
-                    title: '请求方式'
+                    title: '请求方式　'
                 },
                 {
                     field: 'qinqiucs', 

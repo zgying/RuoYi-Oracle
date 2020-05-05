@@ -20,10 +20,10 @@ import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.page.TableDataInfo;
 
 /**
- * 应用列Controller
+ * 应用系统Controller
  * 
- * @author ruoyi
- * @date 2020-04-14
+ * @author open hit
+ * @date 2020-05-03
  */
 @Controller
 @RequestMapping("/system/yingyong")
@@ -42,7 +42,7 @@ public class PlfYingyongController extends BaseController
     }
 
     /**
-     * 查询应用列列表
+     * 查询应用系统列表
      */
     @RequiresPermissions("system:yingyong:list")
     @PostMapping("/list")
@@ -55,10 +55,10 @@ public class PlfYingyongController extends BaseController
     }
 
     /**
-     * 导出应用列列表
+     * 导出应用系统列表
      */
     @RequiresPermissions("system:yingyong:export")
-    @Log(title = "应用列", businessType = BusinessType.EXPORT)
+    @Log(title = "应用系统", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(PlfYingyong plfYingyong)
@@ -69,7 +69,7 @@ public class PlfYingyongController extends BaseController
     }
 
     /**
-     * 新增应用列
+     * 新增应用系统
      */
     @GetMapping("/add")
     public String add()
@@ -78,10 +78,10 @@ public class PlfYingyongController extends BaseController
     }
 
     /**
-     * 新增保存应用列
+     * 新增保存应用系统
      */
     @RequiresPermissions("system:yingyong:add")
-    @Log(title = "应用列", businessType = BusinessType.INSERT)
+    @Log(title = "应用系统", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(PlfYingyong plfYingyong)
@@ -90,7 +90,7 @@ public class PlfYingyongController extends BaseController
     }
 
     /**
-     * 修改应用列
+     * 修改应用系统
      */
     @GetMapping("/edit/{yingyongid}")
     public String edit(@PathVariable("yingyongid") String yingyongid, ModelMap mmap)
@@ -101,10 +101,10 @@ public class PlfYingyongController extends BaseController
     }
 
     /**
-     * 修改保存应用列
+     * 修改保存应用系统
      */
     @RequiresPermissions("system:yingyong:edit")
-    @Log(title = "应用列", businessType = BusinessType.UPDATE)
+    @Log(title = "应用系统", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(PlfYingyong plfYingyong)
@@ -113,10 +113,10 @@ public class PlfYingyongController extends BaseController
     }
 
     /**
-     * 删除应用列
+     * 删除应用系统
      */
     @RequiresPermissions("system:yingyong:remove")
-    @Log(title = "应用列", businessType = BusinessType.DELETE)
+    @Log(title = "应用系统", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

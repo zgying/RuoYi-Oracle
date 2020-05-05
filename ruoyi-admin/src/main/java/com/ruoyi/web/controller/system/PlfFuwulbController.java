@@ -22,8 +22,8 @@ import com.ruoyi.common.core.page.TableDataInfo;
 /**
  * 服务列Controller
  * 
- * @author ruoyi
- * @date 2020-04-14
+ * @author openhit
+ * @date 2020-05-03
  */
 @Controller
 @RequestMapping("/system/fuwulb")
